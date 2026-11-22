@@ -1,3 +1,28 @@
-plugins { id 'com.android.application' }
-android { compileSdk 34; defaultConfig { applicationId "com.irvanjp.tolssatset"; minSdk 24; targetSdk 34; versionCode 1; versionName "1.0" } buildTypes { release { minifyEnabled false } } }
-dependencies { implementation 'com.arthenica:ffmpeg-kit-full:6.0-2' }
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.irvanjp.tolssatset'
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.irvanjp.tolssatset"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'com.arthenica:ffmpeg-kit-full:6.0-2'
+}
