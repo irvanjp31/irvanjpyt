@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
           for (int i = 0; i < 2000; i++) for (String s : shuffled) order.add(s);
           js("onProgress(20,'Mengacak video...')");
           String timeStamp = new SimpleDateFormat("HH-mm-ss").format(new Date());
-          String outName = folder + "_GAS" + gasNum + "_" + timeStamp + ".mp4";
+          String outName = folder + "_GAS" + gasNum + "_" + timeStamp + ".mkv";
           String outPath = base + "/" + outName;
           File outFile = new File(outPath);
           if (outFile.getParentFile() != null) outFile.getParentFile().mkdirs();
@@ -85,17 +85,7 @@ public class MainActivity extends Activity {
           }
           aex0.release();
           if (afmt != null) {
-            try {
-              String mime = afmt.getString(MediaFormat.KEY_MIME);
-              if (mime != null && mime.equals("audio/mpeg")) {
-                MediaFormat aacFmt = MediaFormat.createAudioFormat("audio/mp4a-latm", afmt.getInteger(MediaFormat.KEY_SAMPLE_RATE), afmt.getInteger(MediaFormat.KEY_CHANNEL_COUNT));
-                aacFmt.setInteger(MediaFormat.KEY_AAC_PROFILE, 2);
-                aacFmt.setInteger(MediaFormat.KEY_BIT_RATE, 128000);
-                audioTrack = muxer.addTrack(aacFmt);
-              } else {
-                audioTrack = muxer.addTrack(afmt);
-              }
-            } catch (Exception e) { audioTrack = -1; }
+            try { audioTrack = muxer.addTrack(afmt); } catch (Exception e) { audioTrack = -1; }
           }
           muxer.start();
           muxerStarted = true;
@@ -134,7 +124,7 @@ public class MainActivity extends Activity {
             js("onProgress(" + p + ",'Menggabungkan video...')");
           }
           if (audioTrack >= 0 && audioPath != null) {
-            js("onProgress(85,'Menggabungkan audio...')");
+            js("onProgress(85,'Menggabungkan audio MP3...')");
             List<String> audioList = new ArrayList<>();
             for (String a : audParts) if (!a.isEmpty()) audioList.add(a);
             if (audioList.isEmpty()) audioList.add(firstAudioName);
@@ -183,4 +173,4 @@ public class MainActivity extends Activity {
       }).start();
     }
   }
-        }
+}
