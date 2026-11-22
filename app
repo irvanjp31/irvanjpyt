@@ -1,3 +1,0 @@
-plugins { id 'com.android.application' }
-android { compileSdk 34; defaultConfig { applicationId "com.irvanjp.tolssatset"; minSdk 24; targetSdk 34; versionCode 1; versionName "1.0" } buildTypes { release { minifyEnabled false } } }
-dependencies { implementation 'com.arthenica:ffmpeg-kit-full:6.0-2' }
