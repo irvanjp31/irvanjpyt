@@ -73,20 +73,29 @@ public class MainActivity extends Activity {
           String[] audParts = audClean.split("\\s+");
           String firstAudioName = audParts.length > 0 ? audParts[0] : "g";
           File audioFile = new File(base + "/" + firstAudioName + ".mp3");
-          if (!audioFile.exists()) audioFile = new File(base + "/" + firstAudioName + ".m4a");
+          if (!audioFile.exists()) { js("onError('Audio MP3 tidak ditemukan')"); return; }
           MediaFormat afmt = null;
-          String audioPath = null;
-          if (audioFile.exists()) {
-            audioPath = audioFile.getAbsolutePath();
-            MediaExtractor aex = new MediaExtractor();
-            aex.setDataSource(audioPath);
-            for (int i = 0; i < aex.getTrackCount(); i++) {
-              MediaFormat fm = aex.getTrackFormat(i);
-              String mime = fm.getString(MediaFormat.KEY_MIME);
-              if (mime != null && mime.startsWith("audio/")) { afmt = fm; break; }
-            }
-            aex.release();
-            if (afmt != null) audioTrack = muxer.addTrack(afmt);
+          String audioPath = audioFile.getAbsolutePath();
+          MediaExtractor aex0 = new MediaExtractor();
+          aex0.setDataSource(audioPath);
+          for (int i = 0; i < aex0.getTrackCount(); i++) {
+            MediaFormat fm = aex0.getTrackFormat(i);
+            String mime = fm.getString(MediaFormat.KEY_MIME);
+            if (mime != null && mime.startsWith("audio/")) { afmt = fm; break; }
+          }
+          aex0.release();
+          if (afmt != null) {
+            try {
+              String mime = afmt.getString(MediaFormat.KEY_MIME);
+              if (mime != null && mime.equals("audio/mpeg")) {
+                MediaFormat aacFmt = MediaFormat.createAudioFormat("audio/mp4a-latm", afmt.getInteger(MediaFormat.KEY_SAMPLE_RATE), afmt.getInteger(MediaFormat.KEY_CHANNEL_COUNT));
+                aacFmt.setInteger(MediaFormat.KEY_AAC_PROFILE, 2);
+                aacFmt.setInteger(MediaFormat.KEY_BIT_RATE, 128000);
+                audioTrack = muxer.addTrack(aacFmt);
+              } else {
+                audioTrack = muxer.addTrack(afmt);
+              }
+            } catch (Exception e) { audioTrack = -1; }
           }
           muxer.start();
           muxerStarted = true;
@@ -134,7 +143,6 @@ public class MainActivity extends Activity {
               for (String aName : audioList) {
                 if (audioPts >= limitUs) break;
                 File af = new File(base + "/" + aName + ".mp3");
-                if (!af.exists()) af = new File(base + "/" + aName + ".m4a");
                 if (!af.exists()) continue;
                 MediaExtractor aex = new MediaExtractor();
                 try { aex.setDataSource(af.getAbsolutePath()); } catch (Exception e) { aex.release(); continue; }
@@ -175,4 +183,4 @@ public class MainActivity extends Activity {
       }).start();
     }
   }
-}
+        }
