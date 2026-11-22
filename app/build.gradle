@@ -24,5 +24,5 @@ android {
 }
 
 dependencies {
-    implementation 'com.arthenica:ffmpeg-kit-full:6.0-2'
+    implementation 'com.arthenica:ffmpeg-kit-full:5.1'
 }
