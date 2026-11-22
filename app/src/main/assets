@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Irvanjp YT - Tols Satset Pro V1</title><style>body{background:#000;color:#fff;font-family:Arial,sans-serif;margin:0;padding:12px}h1{color:#ADFF2F;margin:0;font-size:28px}.card{background:#111;border:1px solid #ADFF2F;border-radius:14px;padding:14px;margin:10px 0}input,select{width:100%;padding:11px;margin:4px 0;background:#000;color:#fff;border:1px solid #333;border-radius:8px;box-sizing:border-box}button{background:#ADFF2F;color:#000;border:none;padding:14px;width:100%;border-radius:10px;font-weight:900;font-size:16px;margin:6px 0;cursor:pointer}.wa{background:#25D366}.ghost{background:#222;color:#fff}.bar{background:#222;height:28px;border-radius:14px;overflow:hidden;margin:10px 0}.fill{background:#ADFF2F;height:100%;width:0%;text-align:center;color:#000;font-weight:900;line-height:28px}.hidden{display:none}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.mode{border:1px solid #ADFF2F;border-radius:10px;padding:10px;background:#0a0f00}.lockbox{background:#ADFF2F;color:#000;padding:8px 12px;border-radius:8px;font-weight:900;text-align:center}.acakbox{background:#222;border:1px dashed #ADFF2F;padding:8px 12px;border-radius:8px;text-align:center;color:#ADFF2F}.flow{display:flex;align-items:center;gap:6px;margin:8px 0;flex-wrap:wrap}.arrow{font-size:18px;color:#ADFF2F}label{font-size:13px;color:#ccc}.sec{font-weight:900;color:#ADFF2F;margin:10px 0 4px}</style></head><body>
+<h1>Irvanjp YT</h1><div>TOLS SATSET PRO V1 - <b style="color:#ADFF2F">PRO LISENSI AREA</b></div>
+<div id="lock" class="card">
+<a href="https://wa.me/628155557508?text=Halo%2C%20saya%20mau%20beli%20Irvanjp%20YT%20-%20Tols%20Satset%20Pro%20V1" target="_blank"><button class="wa">🟢 Chat WA - Beli Lisensi</button></a>
+<div style="text-align:center;font-size:22px;font-weight:900">08155557508</div>
+<div style="text-align:center;color:#aaa">Belum punya kunci? Chat WA di atas</div>
+<div style="background:#0a0f00;border:1px solid #ADFF2F;border-radius:10px;padding:10px;text-align:center">📱 Kode HP Kamu: <b id="deviceIdShow" style="color:#ADFF2F">...</b><div style="font-size:11px;color:#aaa">1 Kunci = 1 HP - Kirim Kode HP ini ke WA kalau mau aktivasi</div><button class="ghost" onclick="kirimDevice()">📋 Kirim Kode HP ke WA</button></div>
+<h2 style="text-align:center;color:#ADFF2F">🔒 Masukkan Kode Lisensi</h2>
+<input id="key" placeholder="IRV-XXXX-XXXX-XXXX" autocomplete="off">
+<div id="err" style="color:#ff6666;text-align:center"></div>
+<button onclick="cek()">🛡️ AKTIFKAN</button>
+</div>
+<div id="tool" class="hidden">
+<div class="card">
+<label>Folder</label><input id="folder" value="" placeholder="Isi nama folder - Contoh: IRVANJPYT">
+<div class="sec">🎬 VIDEO</div>
+<div class="grid2"><div><label>Bahan Video - Pilih yang mau dipakai</label><input id="bahan" value="a b c d" placeholder="Contoh: a b c d"></div><div><label>Depan - Dikunci (Ngikutin Bahan)</label><select id="depan"></select></div></div>
+<div style="font-size:12px;color:#ccc;margin:4px 0">Bahan di atas yang dipakai. Yang dipilih di Depan akan muncul paling depan dan dikunci.</div><div class="sec">🎲 MODE ACAK - JELAS</div>
+<div class="mode">
+<div style="font-size:13px">1. Yang dikunci paling depan:</div>
+<div class="flow"><div class="lockbox" id="lockPreview">🔒 b</div><span class="arrow">→</span><span style="font-size:13px">cuma ini yang dikunci</span></div>
+<div style="font-size:13px">2. Setelah itu:</div>
+<div class="flow"><div class="acakbox">🎲 Acak</div><div class="acakbox">🎲 Acak</div><div class="acakbox">🎲 Acak</div><span>...</span></div>
+<div style="font-size:12px;color:#ccc">FULL ACAK RANDOM</div>
+</div>
+<div class="sec">⏱️ TARGET</div>
+<div class="grid3"><div><label>Jam</label><input id="jj" type="number" value="3"></div><div><label>Menit</label><input id="mm" type="number" value="0"></div><div><label>Detik</label><input id="dd" type="number" value="13"></div></div>
+<div class="sec">🎵 AUDIO</div>
+<div class="grid2"><div><label>Audio - Custom Bebas Isi</label><input id="audio_custom" value="g h" placeholder="Contoh: g h"></div><div><label>Loop Audio?</label><select id="loop"><option value="n">Tidak</option><option value="y">Ya - Di-loop</option></select></div></div>
+<div style="color:#aaa;font-size:11px">Isi sesuai audio kamu</div>
+<div class="grid2"><div><label>GAS Number</label><input id="gas" type="number" value="1"></div><div><label>&nbsp;</label><div style="padding:10px;text-align:center;border:1px solid #333;border-radius:8px">Urutan: <b id="urut">g h</b></div></div></div>
+<button onclick="gas()">🚀 GAS - LANGSUNG JADI</button>
+<div class="bar"><div id="fill" class="fill">0%</div></div>
+<div id="status" style="text-align:center">Siap</div>
+<div id="kes" style="white-space:pre-wrap;margin-top:10px"></div>
+</div>
+<div style="text-align:center;color:#aaa">© Irvanjp YT - 1 Lisensi = 1 HP<br><span id="boundInfo" style="color:#ADFF2F;font-size:12px"></span></div><script>document.getElementById('boundInfo').innerText='HP ini terkunci ke: '+getDeviceId()+' - Kunci: '+localStorage.getItem('irv_bound_key');
+function onProgress(p,msg){var fill=document.getElementById('fill');fill.style.width=p+'%';fill.innerText=p+'%';document.getElementById('status').innerText=msg+' '+p+'%';if(p>=100){var F=document.getElementById('folder').value||'IRVANJPYT';var GAS=document.getElementById('gas').value||1;document.getElementById('kes').innerText='✅ SELESAI\n📁 Tersimpan di Folder: '+F+'\n📤 File: '+F+'_GAS'+GAS+'_[JAM].mp4';}}
+function onDone(file){document.getElementById('status').innerText='SELESAI - Video langsung jadi';document.getElementById('kes').innerText='✅ SELESAI\n📁 Tersimpan di: '+file;}
+function onError(e){document.getElementById('status').innerText='GAGAL: '+e;}
+</script>
+</div>
+<script>
+var KEYS=["IRV7K9Q2X4M8P3Z","IRVQ3W89J2K5T7N","IRV4M6P8B2D9F1H","IRV2Z9X6K4V3Q8M","IRV8N5C1R7T4Y2K","IRV5H2J9D4F6G3S","IRV9T1M3P8K2V6B","IRV6F4S8W2Q7J9N","IRV3D8G5K1Z9M4P","IRV1B7N4T9R6X2W","IRV8K3P5V9M2Q7Z","IRV4T6H9B1N7D3F","IRV9X2M6J8K3P5Q","IRV2V7B4N9C8H1D","IRV5Q9W1K6Z4M8T","IRV7D3F2P6H9B4N","IRV3M8K5T2V6Z9Q","IRV6P4N9F7D1X3B","IRV8W5T2K9P4H6M","IRV1J7Q3D5V8N2K"];
+function norm(s){return s.toUpperCase().replace(/[^A-Z0-9]/g,'')}
+function getDeviceId(){var d=localStorage.getItem('irv_device');if(!d){d='HP-'+Math.random().toString(36).substring(2,6).toUpperCase()+'-'+Math.random().toString(36).substring(2,6).toUpperCase();localStorage.setItem('irv_device',d);}return d;}
+var DEVICE=getDeviceId();document.getElementById('deviceIdShow').innerText=DEVICE;
+function kirimDevice(){var txt='Halo, saya mau aktivasi. Kode HP saya: '+DEVICE+' - Kunci saya: '+(document.getElementById('key').value||'-');window.open('https://wa.me/628155557508?text='+encodeURIComponent(txt),'_blank');}
+if(localStorage.getItem('irv_pro')==='1' && localStorage.getItem('irv_bound_device')===DEVICE){show()}else if(localStorage.getItem('irv_pro')==='1' && localStorage.getItem('irv_bound_device')!==DEVICE){document.getElementById('err').innerText='Kunci ini sudah dipakai di HP lain - Hubungi WA';}
+function cek(){var v=norm(document.getElementById('key').value);if(KEYS.indexOf(v)>-1){localStorage.setItem('irv_pro','1');localStorage.setItem('irv_bound_key',v);localStorage.setItem('irv_bound_device',DEVICE);show()}else{document.getElementById('err').innerText='Kode Salah - Coba lagi, pastikan tanpa spasi'}}
+function show(){document.getElementById('lock').classList.add('hidden');document.getElementById('tool').classList.remove('hidden')}
+function parseBahan(){var raw=document.getElementById('bahan').value||'a b c d';var parts=raw.split(/[\s,]+/).filter(function(x){return x.length>0});if(parts.length===0)parts=['a','b','c','d'];return parts;}
+function syncBahan(){var parts=parseBahan();var sel=document.getElementById('depan');var old=sel.value;sel.innerHTML='';parts.forEach(function(p){var o=document.createElement('option');o.value=p;o.text=p;sel.appendChild(o);});if(parts.indexOf(old)>-1)sel.value=old;else sel.value=parts[0];sync();}
+function sync(){var d=document.getElementById('depan').value;document.getElementById('lockPreview').innerText='🔒 '+d;var a=document.getElementById('audio_custom').value||'g';document.getElementById('urut').innerText=a;}
+document.getElementById('bahan').addEventListener('input',syncBahan);document.getElementById('depan').addEventListener('change',sync);document.getElementById('audio_custom').addEventListener('input',sync);syncBahan();
+function gas(){
+var F=document.getElementById('folder').value||'IRVANJPYT';
+var B=document.getElementById('bahan').value||'a b c d';
+var D=document.getElementById('depan').value||'a';
+var JJ=document.getElementById('jj').value||0,MM=document.getElementById('mm').value||0,DD=document.getElementById('dd').value||0;
+var TOTAL=parseInt(JJ)*3600+parseInt(MM)*60+parseInt(DD);
+var AUD=document.getElementById('audio_custom').value||'g';
+var LOOP=document.getElementById('loop').value;
+var GAS=document.getElementById('gas').value||1;
+if(window.Android && window.Android.GAS){
+  document.getElementById('status').innerText='Menjalankan ffmpeg asli...';
+  window.Android.GAS(F,B,D,String(TOTAL),AUD,LOOP,String(GAS));
+  return;
+}
+var GAS=document.getElementById('gas').value||1;var p=0;var st=document.getElementById('status');var fill=document.getElementById('fill');var iv=setInterval(function(){p+=Math.floor(Math.random()*8)+3;if(p>=100){p=100;clearInterval(iv);st.innerText='SELESAI - Video langsung jadi';document.getElementById('kes').innerText='✅ SELESAI\n📁 Tersimpan di Folder: '+F+'\n📤 File: '+F+'_GAS'+GAS+'_[JAM].mp4';}else if(p<30){st.innerText='Menyiapkan... '+p+'%'}else if(p<60){st.innerText='Mengacak video... '+p+'%'}else if(p<90){st.innerText='Menggabungkan audio... '+p+'%'}else{st.innerText='Menyelesaikan... '+p+'%'}fill.style.width=p+'%';fill.innerText=p+'%';},300);}
+</script></body></html>
