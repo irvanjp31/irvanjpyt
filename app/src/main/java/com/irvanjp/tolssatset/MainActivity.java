@@ -64,22 +64,24 @@ public class MainActivity extends Activity {
           bw.close();
           String audClean = audioCustom.replaceAll("(?i)lalu", " ").replaceAll(",", " ").trim();
           String[] audParts = audClean.split("\\s+");
-          StringBuilder concatCmd = new StringBuilder();
+          String audioInput = "";
+          String audioMap = "";
+          int audioCount = 0;
           for (String a : audParts) {
             File af = new File(base + "/" + a + ".mp3");
-            if (af.exists()) concatCmd.append("file '").append(af.getAbsolutePath()).append("'\n");
+            if (af.exists()) {
+              audioInput += " -i " + af.getAbsolutePath();
+              audioCount++;
+            }
           }
-          String audioListPath = base + "/audiolist.txt";
-          BufferedWriter abw = new BufferedWriter(new FileWriter(audioListPath));
-          abw.write(concatCmd.toString());
-          abw.close();
-          String concatAudio = base + "/audio.mp3";
           String ff = ffmpegPath();
-          js("onProgress(40,'Gabung MP3...')");
-          Process p1 = Runtime.getRuntime().exec(new String[]{"sh", "-c", ff + " -y -f concat -safe 0 -i " + audioListPath + " -c copy " + concatAudio});
-          p1.waitFor();
-          js("onProgress(60,'Gabung Video + MP3 No Encode...')");
-          String cmd = ff + " -y -f concat -safe 0 -i " + listPath + " -i " + concatAudio + " -map 0:v:0 -map 1:a:0 -c copy -t " + total + " " + outPath;
+          js("onProgress(50,'GAS No Encode...')");
+          String cmd;
+          if (audioCount == 1) {
+            cmd = ff + " -y -f concat -safe 0 -i " + listPath + audioInput + " -map 0:v:0 -map 1:a:0 -c copy -t " + total + " " + outPath;
+          } else {
+            cmd = ff + " -y -f concat -safe 0 -i " + listPath + audioInput + " -filter_complex concat=n=" + audioCount + ":v=0:a=1[a] -map 0:v:0 -map [a] -c copy -t " + total + " " + outPath;
+          }
           Process p = Runtime.getRuntime().exec(new String[]{"sh", "-c", cmd});
           BufferedReader br = new BufferedReader(new InputStreamReader(p.getErrorStream()));
           String line;
@@ -93,4 +95,4 @@ public class MainActivity extends Activity {
       }).start();
     }
   }
-            }
+}
